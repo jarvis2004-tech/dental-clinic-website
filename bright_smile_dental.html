@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bright Smile Dental Clinic</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D2B45;
+      --teal: #0E7490;
+      --teal-light: #E0F2F7;
+      --accent: #C4622D;
+      --accent-light: #FDF0E8;
+      --bg: #F5F9FC;
+      --surface: #FFFFFF;
+      --surface2: #EEF5F9;
+      --border: rgba(13,43,69,0.1);
+      --border-strong: rgba(13,43,69,0.2);
+      --text: #0D2B45;
+      --text-sec: #3B6882;
+      --text-muted: #7EA3BA;
+      --green: #166534;
+      --green-light: #DCFCE7;
+      --amber: #92400E;
+      --amber-light: #FEF3C7;
+      --red: #991B1B;
+      --red-light: #FEE2E2;
+      --radius: 10px;
+      --radius-lg: 16px;
+      --shadow: 0 2px 16px rgba(13,43,69,0.08);
+      --shadow-lg: 0 8px 40px rgba(13,43,69,0.13);
+    }
+
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(13,43,69,0.25);
+    }
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    header h1 span { color: #5DD6F5; }
+    nav { display: flex; gap: 4px; }
+    nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s;
+    }
+    nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    nav a i { font-size: 12px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1A4A6E 60%, #0E7490 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '🦷';
+      position: absolute;
+      font-size: 280px;
+      opacity: 0.04;
+      top: -40px; right: -40px;
+      line-height: 1;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(93,214,245,0.15);
+      color: #5DD6F5;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .hero p { font-size: 17px; color: rgba(255,255,255,0.65); margin-bottom: 2rem; font-weight: 300; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 30px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .cta:hover { background: #1ebd5a; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-bg { background: var(--surface); }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--teal); }
+    .service-icon { font-size: 28px; margin-bottom: 12px; }
+    .service-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); }
+    .service-card p { font-size: 13px; color: var(--text-sec); margin-top: 6px; line-height: 1.5; }
+
+    /* ─── BACKGROUND SECTION ─── */
+    .bg-section {
+      background: linear-gradient(180deg, #EBF4F8 0%, #F0F8FF 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── VIDEO ─── */
+    .video-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 16/9;
+      max-width: 700px;
+    }
+    .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ─── REVIEWS ─── */
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .review-card:hover { transform: translateY(-2px); }
+    .stars { font-size: 16px; margin-bottom: 10px; letter-spacing: 2px; }
+    .review-card p { font-size: 14px; color: var(--text-sec); line-height: 1.6; margin-bottom: 10px; font-style: italic; }
+    .reviewer { font-size: 13px; font-weight: 600; color: var(--navy); }
+
+    /* ─── PRODUCTS ─── */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .product-card:hover { border-color: var(--teal); box-shadow: var(--shadow); }
+    .product-icon { font-size: 36px; margin-bottom: 10px; }
+    .product-card h3 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .product-price { font-size: 22px; font-weight: 600; color: var(--teal); margin-bottom: 14px; font-family: 'DM Serif Display', serif; }
+    .buy-btn {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s;
+      width: 100%;
+    }
+    .buy-btn:hover { background: #0A5F78; }
+
+    /* ─── CALCULATOR SECTION ─── */
+    .calc-section { background: var(--navy); padding: 4rem 2rem; }
+    .calc-inner { max-width: 760px; margin: 0 auto; }
+    .calc-header { text-align: center; margin-bottom: 2.5rem; }
+    .calc-tag {
+      display: inline-block;
+      background: rgba(93,214,245,0.15);
+      color: #5DD6F5;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .calc-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .calc-header p { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 300; }
+
+    /* Steps */
+    .calc-step { margin-bottom: 2rem; }
+    .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .step-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+    /* Symptom grid */
+    .sym-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 8px; }
+    .sym-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.18s;
+      user-select: none;
+    }
+    .sym-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+    .sym-card.active { background: rgba(14,116,144,0.3); border-color: #5DD6F5; }
+    .sym-check {
+      width: 18px; height: 18px;
+      border-radius: 5px;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s;
+    }
+    .sym-card.active .sym-check { background: var(--teal); border-color: var(--teal); }
+    .sym-check svg { display: none; }
+    .sym-card.active .sym-check svg { display: block; }
+    .sym-label { font-size: 13px; color: rgba(255,255,255,0.8); }
+
+    /* Duration */
+    .dur-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .dur-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      color: rgba(255,255,255,0.7);
+      transition: all 0.18s;
+    }
+    .dur-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    .dur-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+    /* Pain slider */
+    .pain-wrap {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+    }
+    .pain-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .pain-lbl { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .pain-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: #fff;
+      line-height: 1;
+    }
+    .pain-val span { font-size: 14px; font-family: 'DM Sans', sans-serif; color: rgba(255,255,255,0.4); font-weight: 300; }
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 5px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #5DD6F5 0%, #5DD6F5 var(--pct,0%), rgba(255,255,255,0.15) var(--pct,0%), rgba(255,255,255,0.15) 100%);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2.5px solid #5DD6F5;
+      box-shadow: 0 2px 8px rgba(93,214,245,0.35);
+      transition: transform 0.15s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .pain-scale { display: flex; justify-content: space-between; margin-top: 8px; }
+    .pain-scale span { font-size: 11px; color: rgba(255,255,255,0.35); }
+
+    /* Assess button */
+    .calc-cta { text-align: center; margin-top: 2rem; }
+    .assess-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 48px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(196,98,45,0.35);
+      letter-spacing: 0.01em;
+    }
+    .assess-btn:hover { background: #A54E22; transform: translateY(-2px); box-shadow: 0 6px 28px rgba(196,98,45,0.45); }
+    .assess-btn:disabled { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.35); box-shadow: none; cursor: not-allowed; transform: none; }
+
+    /* Result */
+    .result-wrap { display: none; margin-top: 2rem; animation: fadeUp 0.4s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .result-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .result-top { padding: 1.5rem; }
+    .sev-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .sev-pill .dot { width: 7px; height: 7px; border-radius: 50%; }
+    .sev-low { background: var(--green-light); color: var(--green); }
+    .sev-low .dot { background: var(--green); }
+    .sev-moderate { background: var(--amber-light); color: var(--amber); }
+    .sev-moderate .dot { background: #D97706; }
+    .sev-high { background: var(--red-light); color: var(--red); }
+    .sev-high .dot { background: var(--red); }
+    .diag-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .diag-desc { font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+    .result-recs {
+      background: var(--surface2);
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+    }
+    .recs-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    .rec-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .rec-item:last-child { border-bottom: none; }
+    .rec-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .result-alts { padding: 1rem 1.5rem; border-top: 1px solid var(--border); }
+    .alts-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+    .alt-tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-sec);
+      margin: 3px 4px 3px 0;
+    }
+    .disclaimer {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.6;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .reset-row { text-align: center; margin-top: 10px; }
+    .reset-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 24px;
+      padding: 8px 22px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.18s;
+    }
+    .reset-btn:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #07192A;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 15px; }
+      nav a span { display: none; }
+      .sym-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <h1>Bright <span>Smile</span> Dental Clinic</h1>
+  <nav>
+    <a href="bright_smile_dental.html"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+    <a href="about.html"><i class="fa-solid fa-user"></i> <span>About</span></a>
+    <a href="contact.html"><i class="fa-solid fa-phone"></i> <span>Contact</span></a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-tag">Trusted Dental Care</div>
+  <h2>Your Perfect Smile<br>Starts Here</h2>
+  <p>Professional dental care for the whole family in a warm, caring environment</p>
+  <a class="cta" href="https://wa.me/918766619779" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i> Book Appointment on WhatsApp
+  </a>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<div class="services-bg">
+  <div class="section">
+    <div class="section-label">What We Offer</div>
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">🦷</div>
+        <h3>Teeth Cleaning</h3>
+        <p>Professional scaling and polishing for a fresh, healthy mouth</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔬</div>
+        <h3>Root Canal</h3>
+        <p>Painless root canal therapy to save damaged or infected teeth</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Veneers, bonding, and smile makeovers tailored to you</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💎</div>
+        <h3>Teeth Whitening</h3>
+        <p>Safe and effective whitening for a brighter, confident smile</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BACKGROUND SECTION ===== -->
+<div class="bg-section">
+
+  <!-- VIDEO -->
+  <div class="section">
+    <div class="section-label">Learn & Grow</div>
+    <section class="video">
+
+<h2>Dental Care Tips</h2>
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/ONH4TyZlem8"
+title="Dental Video"
+allowfullscreen>
+</iframe>
+
+</section>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-label">What Patients Say</div>
+    <h2>Patient Reviews</h2>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Excellent dental service! Painless and very professional. Highly recommend to everyone."</p>
+        <div class="reviewer">— Rahul Sharma</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Very friendly staff and a clean, modern clinic. My kids actually enjoy going to the dentist now!"</p>
+        <div class="reviewer">— Anita Verma</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Best dental clinic in the area. Dr. is thorough, gentle, and explains everything clearly."</p>
+        <div class="reviewer">— Mohit Singh</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-label">Shop</div>
+    <h2>Dental Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-icon">🪥</div>
+        <h3>Toothbrush Small</h3>
+        <div class="product-price">₹40</div>
+        <button class="buy-btn" onclick="addToCart('Toothbrush Small', 40)">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🪥</div>
+        <h3>Toothbrush Medium</h3>
+        <div class="product-price">₹50</div>
+        <button class="buy-btn" onclick="addToCart('Toothbrush Medium', 50)">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🪥</div>
+        <h3>Toothbrush Large</h3>
+        <div class="product-price">₹60</div>
+        <button class="buy-btn" onclick="addToCart('Toothbrush Large', 60)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== DIAGNOSIS CALCULATOR ===== -->
+<div class="calc-section">
+  <div class="calc-inner">
+
+    <div class="calc-header">
+      <div class="calc-tag">Free Tool</div>
+      <h2>Tooth Pain Diagnosis Tool</h2>
+      <p>Select your symptoms for a preliminary oral health assessment</p>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="calc-step">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div class="step-title">Select all symptoms you are experiencing</div>
+      </div>
+      <div class="sym-grid" id="sym-grid"></div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="calc-step">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div class="step-title">How long have you had these symptoms?</div>
+      </div>
+      <div class="dur-row" id="dur-row">
+        <button class="dur-btn" data-v="acute">Less than 24 hours</button>
+        <button class="dur-btn" data-v="days">1 – 7 days</button>
+        <button class="dur-btn" data-v="weeks">1 – 4 weeks</button>
+        <button class="dur-btn" data-v="chronic">Over a month</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="calc-step">
+      <div class="step-head">
+        <div class="step-num">3</div>
+        <div class="step-title">Rate your pain level</div>
+      </div>
+      <div class="pain-wrap">
+        <div class="pain-top">
+          <div class="pain-lbl">Pain level</div>
+          <div class="pain-val" id="pain-display">0 <span>/ 10</span></div>
+        </div>
+        <input type="range" id="pain-slider" min="0" max="10" step="1" value="0"/>
+        <div class="pain-scale">
+          <span>None</span><span>Mild</span><span>Moderate</span><span>Severe</span><span>Worst</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-cta">
+      <button class="assess-btn" id="assess-btn" disabled>Assess My Symptoms</button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-wrap" id="result-wrap">
+      <div class="result-card">
+        <div class="result-top">
+          <div class="sev-pill" id="sev-pill"><span class="dot"></span><span id="sev-text"></span></div>
+          <div class="diag-name" id="diag-name"></div>
+          <div class="diag-desc" id="diag-desc"></div>
+        </div>
+        <div class="result-recs">
+          <div class="recs-title">Recommended Actions</div>
+          <div id="rec-list"></div>
+        </div>
+        <div class="result-alts" id="alt-area" style="display:none;">
+          <div class="alts-title">Other Possible Conditions</div>
+          <div id="alt-tags"></div>
+        </div>
+      </div>
+      <p class="disclaimer">⚕ This tool provides general information only. It is not a substitute for professional dental advice. Please visit Bright Smile Dental Clinic for a proper diagnosis and treatment.</p>
+      <div class="reset-row">
+        <button class="reset-btn" id="reset-btn">Start Over</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2026 Bright Smile Dental Clinic · All rights reserved</p>
+</footer>
+
+<script>
+  // ── Diagnosis data ──
+  const SYMPTOMS = [
+    {id:"toothache",label:"Toothache"},
+    {id:"sensitivity",label:"Hot/cold sensitivity"},
+    {id:"swelling",label:"Swelling / puffiness"},
+    {id:"bleeding_gums",label:"Bleeding gums"},
+    {id:"gum_recession",label:"Gum recession"},
+    {id:"bad_breath",label:"Bad breath"},
+    {id:"loose_tooth",label:"Loose tooth"},
+    {id:"jaw_pain",label:"Jaw pain / clicking"},
+    {id:"broken_tooth",label:"Broken or chipped tooth"},
+    {id:"white_spots",label:"White spots / lesions"},
+    {id:"dry_mouth",label:"Dry mouth"},
+    {id:"mouth_sore",label:"Mouth sore / ulcer"},
+  ];
+
+  const DIAGNOSES = [
+    { id:"abscess", name:"Dental Abscess",
+      desc:"A bacterial infection forming a pocket of pus, typically causing severe pain, swelling, and sometimes fever. Requires prompt treatment to prevent spread of infection.",
+      severity:"high",
+      recs:["See a dentist or emergency dental service within 24 hours","Do not apply heat to the area — it can worsen swelling","Ibuprofen may ease discomfort temporarily — do not delay care","Do not attempt to drain the abscess yourself"],
+      match: s => s.swelling && s.toothache && (s.bad_breath || s.sensitivity), pain_min: 6 },
+    { id:"cavity", name:"Dental Cavity (Tooth Decay)",
+      desc:"Bacterial acid erosion of tooth enamel and dentine. Very common and highly treatable, especially when caught early.",
+      severity:"moderate",
+      recs:["Book a dental appointment within 1–2 weeks","Avoid sugary or acidic foods and drinks","Brush twice daily with fluoride toothpaste","Floss daily to remove plaque between teeth"],
+      match: s => s.toothache && s.sensitivity && !s.swelling, pain_min: 2 },
+    { id:"gingivitis", name:"Gingivitis",
+      desc:"Early-stage gum disease caused by plaque buildup. Gums become inflamed, red, and bleed easily. Fully reversible with good oral hygiene.",
+      severity:"low",
+      recs:["Brush for 2 minutes, twice daily with proper technique","Floss every day to clear plaque at the gumline","Schedule a professional scale and polish","Use an antibacterial mouthwash short-term"],
+      match: s => s.bleeding_gums && !s.loose_tooth && !s.swelling, pain_min: 0 },
+    { id:"periodontitis", name:"Periodontitis (Advanced Gum Disease)",
+      desc:"Serious infection that damages soft tissue and bone supporting the teeth. Can lead to tooth loss if untreated.",
+      severity:"high",
+      recs:["See a dentist or periodontist soon — do not delay","A deep cleaning (scaling and root planing) will likely be needed","Stop smoking — it significantly worsens gum disease","Maintain excellent oral hygiene between appointments"],
+      match: s => s.bleeding_gums && (s.loose_tooth || s.gum_recession) && s.bad_breath, pain_min: 0 },
+    { id:"tmj", name:"TMJ / Jaw Disorder",
+      desc:"Temporomandibular joint dysfunction causes jaw pain, clicking, and difficulty opening the mouth wide. Often linked to teeth grinding or stress.",
+      severity:"moderate",
+      recs:["Avoid hard or chewy foods for now","Apply a warm compress to ease jaw muscle tension","Ask your dentist about a custom night guard for grinding","A physiotherapist or specialist referral may help"],
+      match: s => s.jaw_pain && !s.toothache && !s.swelling, pain_min: 0 },
+    { id:"sensitivity2", name:"Tooth Sensitivity",
+      desc:"Exposed dentine or worn enamel triggers brief, sharp pain with hot, cold, sweet, or acidic stimuli.",
+      severity:"low",
+      recs:["Switch to a desensitising toothpaste (e.g. Sensodyne)","Avoid highly acidic foods and fizzy drinks","Use a soft-bristle toothbrush with gentle pressure","Ask your dentist about a fluoride varnish application"],
+      match: s => s.sensitivity && !s.toothache && !s.swelling, pain_min: 0 },
+    { id:"cracked", name:"Cracked or Chipped Tooth",
+      desc:"A fracture ranging from minor cosmetic chips to deep cracks extending into the root, potentially causing significant pain.",
+      severity:"moderate",
+      recs:["See a dentist within a few days","Avoid chewing on the affected side","If pain is severe, seek same-day emergency care","Do not ignore it — cracks can worsen or become infected"],
+      match: s => s.broken_tooth, pain_min: 0 },
+    { id:"thrush", name:"Oral Thrush (Candidiasis)",
+      desc:"A fungal infection presenting as creamy white patches on the tongue or inner cheeks. More common in people with dry mouth or recent antibiotic use.",
+      severity:"low",
+      recs:["See your GP or dentist — antifungal medication is needed","Good oral hygiene is important but won't clear the infection alone","If you wear dentures, have them cleaned and checked","Inform your doctor of any recent antibiotic or steroid use"],
+      match: s => s.white_spots && s.dry_mouth, pain_min: 0 },
+    { id:"ulcer", name:"Aphthous Ulcer (Canker Sore)",
+      desc:"Small, painful ulcers inside the mouth. Usually harmless and heal on their own within 1–2 weeks.",
+      severity:"low",
+      recs:["Apply a topical anaesthetic gel (e.g. Bonjela) for pain relief","Avoid spicy, salty, or acidic foods while healing","Maintain gentle but thorough oral hygiene","See a dentist if sores persist beyond 3 weeks or are unusually large"],
+      match: s => s.mouth_sore && !s.swelling && !s.toothache, pain_min: 0 },
+    { id:"general", name:"Oral Health Review Recommended",
+      desc:"Your symptoms don't point clearly to a single condition, but they warrant professional evaluation.",
+      severity:"low",
+      recs:["Book a routine dental checkup at your earliest convenience","Note down your symptoms before the appointment","Keep a log of when symptoms worsen or improve","Maintain twice-daily brushing and daily flossing"],
+      match: () => true, pain_min: 0 },
+  ];
+
+  // ── Build symptom grid ──
+  let selected = new Set();
+  let duration = null;
+  let pain = 0;
+
+  const symGrid = document.getElementById("sym-grid");
+  SYMPTOMS.forEach(sym => {
+    const card = document.createElement("div");
+    card.className = "sym-card";
+    card.dataset.id = sym.id;
+    card.innerHTML = `<div class="sym-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="sym-label">${sym.label}</span>`;
+    card.addEventListener("click", () => {
+      selected.has(sym.id) ? (selected.delete(sym.id), card.classList.remove("active")) : (selected.add(sym.id), card.classList.add("active"));
+      updateBtn();
+    });
+    symGrid.appendChild(card);
+  });
+
+  document.querySelectorAll(".dur-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".dur-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      duration = btn.dataset.v;
+      updateBtn();
+    });
+  });
+
+  const painSlider = document.getElementById("pain-slider");
+  const painDisplay = document.getElementById("pain-display");
+  painSlider.addEventListener("input", () => {
+    pain = parseInt(painSlider.value);
+    painDisplay.innerHTML = `${pain} <span>/ 10</span>`;
+    painSlider.style.setProperty('--pct', (pain / 10 * 100) + '%');
+  });
+
+  function updateBtn() {
+    document.getElementById("assess-btn").disabled = (selected.size === 0 && !duration);
+  }
+
+  document.getElementById("assess-btn").addEventListener("click", () => {
+    const s = {};
+    selected.forEach(k => s[k] = true);
+    let primary = null, alts = [];
+    for (const d of DIAGNOSES) {
+      if (pain < d.pain_min) continue;
+      if (d.match(s)) { if (!primary) primary = d; else if (alts.length < 3) alts.push(d.name); }
+    }
+    if (!primary) primary = DIAGNOSES[DIAGNOSES.length - 1];
+
+    const pill = document.getElementById("sev-pill");
+    pill.className = "sev-pill " + (primary.severity === "high" ? "sev-high" : primary.severity === "moderate" ? "sev-moderate" : "sev-low");
+    document.getElementById("sev-text").textContent = primary.severity === "high" ? "High Priority" : primary.severity === "moderate" ? "Moderate" : "Low Priority";
+    document.getElementById("diag-name").textContent = primary.name;
+    document.getElementById("diag-desc").textContent = primary.desc;
+
+    const recList = document.getElementById("rec-list");
+    recList.innerHTML = primary.recs.map((r, i) => `<div class="rec-item"><div class="rec-num">${i+1}</div><div>${r}</div></div>`).join("");
+
+    const altArea = document.getElementById("alt-area");
+    if (alts.length > 0) {
+      document.getElementById("alt-tags").innerHTML = alts.map(a => `<span class="alt-tag">${a}</span>`).join("");
+      altArea.style.display = "block";
+    } else { altArea.style.display = "none"; }
+
+    const rw = document.getElementById("result-wrap");
+    rw.style.display = "block";
+    setTimeout(() => rw.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  });
+
+  document.getElementById("reset-btn").addEventListener("click", () => {
+    selected.clear();
+    document.querySelectorAll(".sym-card").forEach(c => c.classList.remove("active"));
+    document.querySelectorAll(".dur-btn").forEach(b => b.classList.remove("active"));
+    duration = null; pain = 0;
+    painSlider.value = 0;
+    painSlider.style.setProperty('--pct', '0%');
+    painDisplay.innerHTML = `0 <span>/ 10</span>`;
+    document.getElementById("result-wrap").style.display = "none";
+    document.getElementById("assess-btn").disabled = true;
+  });
+
+  // ── Buy button feedback ──
+  function addToCart(name, price) {
+    const btn = event.target;
+    btn.textContent = "Added ✓";
+    btn.style.background = "#166534";
+    setTimeout(() => { btn.textContent = "Buy Now"; btn.style.background = ""; }, 1800);
+  }
+</script>
+</body>
+</html>
